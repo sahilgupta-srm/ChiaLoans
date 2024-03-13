@@ -1,0 +1,95 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    {{title}}
+  </h1>
+</div>
+<form>
+  <div class="container">
+    <div class="tab" *ngIf='viewAddress' >
+     <label for="address"><b>Address</b></label>
+    <input type="text" class="inputfield" placeholder="Address"  (click)=disableOtherCompMethod() [(ngModel)]="address" name="address" required>
+    <button type="submit" class="trfbtn" (click)="viewAddressDetail($event)">View Address</button>&nbsp;&nbsp;
+    </div>
+    <div class="tab" *ngIf='viewHome'>
+    
+     <label for="regNoView"><b>Reg No</b></label>
+    <input type="text" class="inputfield" placeholder="Reg No"   [(ngModel)]="regNoView" name="regNoView" required disabled>
+    
+     <label for="areaCodeView"><b>Area Code</b></label>
+    <input type="text"  class="inputfield" placeholder="Area Code"  [(ngModel)]="areaCodeView" name="areaCodeView" required disabled>
+    
+     <label for="sqftView"><b>Square Ft</b></label>
+    <input type="text"  class="inputfield" placeholder="Area Code"  [(ngModel)]="sqftView" name="sqftView" required disabled>
+    
+      <label for="ownerView"><b>Owner</b></label>
+    <input type="text"  class="inputfield" placeholder="Owner"  [(ngModel)]="ownerView" name="ownerView" required disabled>
+    
+      <label for="ownerShareView"><b>Owner Share</b></label>
+    <input type="text"  class="inputfield" placeholder="Owner Share"  [(ngModel)]="ownerShareView" name="ownerShareView" required disabled>
+    
+     <label for="remarksView"><b>Remarks</b></label>
+    <textarea  class="inputfield" placeholder="Enter Remarks" name="remarksView" required   [(ngModel)]="remarksView" ></textarea>
+	
+	
+	
+	
+	  <label for="lender"><b>Lender Available:</b></label>
+    <input type="text"  class="inputfield" placeholder="lender"  [(ngModel)]="lender" name="lender" required disabled>
+	
+	 <label for="status"><b>Loan Status:</b></label>
+    <input type="text"  class="inputfield" placeholder="status"  [(ngModel)]="status" name="status" required disabled>
+	
+	
+	
+	  <label for="lenderaddress"><b>Lender Address</b></label>
+    <input type="text"  class="inputfield" placeholder="Lender Address"  [(ngModel)]="lenderaddress" name="lenderaddress" required disabled>
+	
+	  <label for="lendershare"><b>Lender Share</b></label>
+    <input type="text"  class="inputfield" placeholder="Lender Share"  [(ngModel)]="lendershare" name="lendershare" required disabled> 
+	
+	  <label for="Loan Amount"><b>Loan Amount</b></label>
+    <input type="text"  class="inputfield" placeholder="Loan Amount"  [(ngModel)]="loanamount" name="loanamount" required disabled>
+	
+	  <label for="amountpayable"><b>Amount Payable</b></label>
+    <input type="text"  class="inputfield" placeholder="Amount Payable"  [(ngModel)]="amountpayable" name="amountpayable" required disabled>
+	
+	  <label for="transferdate"><b>Date Of Transfer</b></label>
+    <input type="text"  class="inputfield" placeholder="Date"  [(ngModel)]="transferdate" name="transferdate" required disabled>
+	
+	
+	  <label for="duedate"><b>Due Date</b></label>
+    <input type="text"  class="inputfield" placeholder="Due Date"  [(ngModel)]="duedate" name="duedate" required disabled>
+	  <button type="submit" class="trfbtn" (click)="transfer($event)">Confirm</button>
+	  
+
+     <button type="reset" class="trfbtn resetbtn" (click)="clickedBack()">Back</button>&nbsp;&nbsp;
+    
+    </div>
+
+<div *ngIf='viewAddress'>
+    <hr >
+
+    <label for="regNo"><b>Reg No</b></label>
+    <input type="text" class="inputfield" placeholder="Reg No"  [(ngModel)]="regNo" name="regNo" required>
+
+    <label for="areaCode"><b>Area Code</b></label>
+    <input type="text"  class="inputfield" placeholder="Area Code"  [(ngModel)]="areaCode" name="areaCode" required>
+    
+    <label for="sqft"><b>Square Ft</b></label>
+    <input type="text"  class="inputfield" placeholder="Square Ft"  [(ngModel)]="sqft" name="sqft" required>
+    
+    <label for="owner"><b>Owner</b></label>
+    <input type="text"  class="inputfield" placeholder="Owner"  [(ngModel)]="owner" name="owner" required>
+    
+     <label for="ownerShare"><b>Owner Share</b></label>
+    <input type="text"  class="inputfield" placeholder="Owner Share"  [(ngModel)]="ownerShare" name="ownerShare" required>
+
+    <label for="remarks"><b>Remarks</b></label>
+    <textarea  class="inputfield" placeholder="Enter Remarks" name="remarks" required   [(ngModel)]="remarks" ></textarea>
+    <hr>
+    <button type="reset" class="trfbtn resetbtn">Reset</button>&nbsp;&nbsp;
+    <button type="submit" class="trfbtn" (click)="addAsset($event)">Add Asset</button>&nbsp;&nbsp;
+  </div>
+</div>
+</form>

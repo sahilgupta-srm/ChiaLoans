@@ -1,0 +1,9 @@
+const RealEstateBeta = artifacts.require("./RealEstateBeta.sol")
+
+
+
+module.exports = function(deployer) {
+
+	deployer.deploy(RealEstateBeta);
+
+};

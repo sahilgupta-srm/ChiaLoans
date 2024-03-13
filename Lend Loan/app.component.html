@@ -1,0 +1,41 @@
+<h2>Loans List</h2>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes"
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(hero)">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
+
+<div *ngIf="displayDetail">
+ <label for="assetId"><b>Asset Id:</b></label>
+    <input type="text" class="inputfield" placeholder="Asset Id"   [(ngModel)]="assetId" name="assetId" required disabled="true"><br/><br/>
+	
+	<label for="principal"><b>Asset Principal</b></label>
+    <input type="text" class="inputfield" placeholder="Asset Principal"   [(ngModel)]="principal" name="principal" required disabled="true"><br/><br/>
+	
+	<label for="amount"><b>Total Amount:</b></label>
+    <input type="text" class="inputfield" placeholder="Total Amount"   [(ngModel)]="amount" name="amount" required disabled="true"><br/><br/>
+	
+	<label for="share"><b>Lender Share:</b></label>
+    <input type="text" class="inputfield" placeholder="Lender Share"   [(ngModel)]="share" name="share" required ><br/><br/>
+	
+	
+	    <button type="submit" class="trfbtn" (click)="calculate($event)">Calculate</button>&nbsp;&nbsp;
+<br/><br/>
+<label for="roi"><b>ROI:</b></label>
+      <input type="text" placeholder="ROI" name="roi"  [(ngModel)]="roi" disabled="true"><br/><br/>
+
+	  <label for="payable"><b>Amount Payable:</b></label>
+      <input type="text" placeholder="payable" name="payable"  [(ngModel)]="payable" disabled="true"><br/><br/>
+	
+	
+	<label for="date"><b>Transfer Date:</b></label>
+      <input type="date" placeholder="date" name="date"  [(ngModel)]="date" ><br/><br/>
+	<br/><br/>
+	
+	    <button type="submit" class="trfbtn" (click)="addlenders($event)">Pay</button>&nbsp;&nbsp;
+
+	<input type="submit" value="Cancel"/>
+  
+	</div>

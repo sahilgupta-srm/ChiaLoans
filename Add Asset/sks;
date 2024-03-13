@@ -1,0 +1,116 @@
+pragma solidity ^0.4.18;
+
+contract RealEstateBeta {
+
+  struct RESkull{
+    uint id;//asset id
+    uint regno;
+    uint areacode;
+    uint sqft;
+    string desc;
+    address[] owner;
+    uint[] ownershare;
+    string documenthash;
+  }
+  struct DefaulterOwnership{
+      uint id;
+      uint assetid;
+      address ownerplus;
+      uint ownerplusshare;
+      address ownerminus;
+      uint ownerminusshare;
+  }
+
+  mapping (uint => RESkull) public collaterals;
+  mapping (uint => DefaulterOwnership) public defaulters;
+  uint defaultercounter;
+  uint collCounter;
+
+  function getCountofCollateral() public view returns(uint){
+    return (collCounter);
+  }
+
+  function addAsset(uint regno,uint areacode,uint sqft,string desc,address[] owner,uint[] ownershare,string documenthash) public{
+  collCounter++;
+  collaterals[collCounter] = RESkull(
+    collCounter,
+    regno,
+    areacode,
+    sqft,
+    desc,
+    owner,
+    ownershare,
+    documenthash
+    );
+  }
+
+  function askForOwnership(uint assetId,address ownerplus,uint ownerplusshare,address ownerminus,uint ownerminusshare) public{
+    defaultercounter++;
+    RESkull storage asset = collaterals[assetId];
+    address[] storage owner = asset.owner;
+    uint[] storage ownershare = asset.ownershare;
+    uint flag = 0;
+    for( uint k = 0 ; k < owner.length ; k++ ){
+      if(owner[k] == ownerminus){
+        ownershare[k] = ownershare[k] - ownerminusshare;
+      }
+    }
+
+    for( uint i = 0 ; i < owner.length ; i++ ){
+      if(owner[i] == ownerplus){
+        ownershare[i] = ownershare[i] + ownerplusshare;
+        flag=1;
+      }
+
+      if(i == owner.length-1 && flag==0){
+        //add owner and add his owner share at the end
+        owner[owner.length] = ownerplus;
+        ownershare[ownershare.length] = ownerplusshare;
+      }
+    }
+
+
+
+    defaulters[defaultercounter] = DefaulterOwnership(
+      defaultercounter,
+      assetId,
+      ownerplus,
+      ownerplusshare,
+      ownerminus,
+      ownerminusshare
+      );
+  }
+
+  function updateAsset(uint assetId,string desc,address[] owner,uint[] ownershare,string documenthash) public {
+    RESkull storage asset = collaterals[assetId];
+    asset.desc = desc;
+    asset.owner = owner;
+    asset.ownershare = ownershare;
+    asset.documenthash = documenthash;
+  }
+
+  /*retreives all asset ids for the user who has logged in{from:web3.eth.accounts[1]}*/
+  function getAllAssetDetails() public view returns(uint[]){
+    uint[] memory assetIds = new uint[](collCounter);
+    uint assetCounter = 0;
+    for( uint i = 1 ; i <= collCounter ; i++ ) {
+      address[] memory a = collaterals[i].owner;
+      for( uint j = 0 ; j < a.length ; j++ ) {
+        if(msg.sender == a[j]){
+          assetIds[assetCounter] = i;
+          assetCounter++;
+        }
+      }
+    }
+    uint[] memory trimmedAssetIds = new uint[](assetCounter);
+    for(uint k = 0 ; k < assetCounter ; k++){
+      trimmedAssetIds[k] = assetIds[k];
+    }
+    return trimmedAssetIds;
+  }
+
+  /*for the given asset id it will return the asset owner and sharepercent array*/
+  function getAssetOwnershipDetails(uint assetid) public view returns(address[],uint[]){
+    return (collaterals[assetid].owner,collaterals[assetid].ownershare);
+  }
+}

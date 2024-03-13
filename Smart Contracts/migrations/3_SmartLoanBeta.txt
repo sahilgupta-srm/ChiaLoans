@@ -1,0 +1,9 @@
+const SmartLoanBeta = artifacts.require("./SmartLoanBeta.sol")
+
+
+
+module.exports = function(deployer) {
+
+	deployer.deploy(SmartLoanBeta,"0xc932f9c8def5de0376487165e690d2ff577c5e9f","0x308dd68e55736854eb2728ea920a3e8590603b2e");
+
+};

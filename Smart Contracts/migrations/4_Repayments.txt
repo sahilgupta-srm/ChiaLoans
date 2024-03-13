@@ -1,0 +1,9 @@
+const Repayments = artifacts.require("./Repayments.sol")
+
+
+
+module.exports = function(deployer) {
+
+	deployer.deploy(Repayments," 0xc932f9c8def5de0376487165e690d2ff577c5e9f");
+
+};

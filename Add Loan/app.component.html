@@ -1,0 +1,35 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    {{title}}
+  </h1>
+</div>
+<form>
+
+<div >
+    <hr >
+
+    <label for="id"><b>Asset Id</b></label>
+    <input type="text" class="inputfield" placeholder="Asset Id"  [(ngModel)]="id" name="id" required>
+	<button type="submit" class="trfbtn" (click)="fetchDetails($event)">Fetch Details</button><br/><br/>
+
+    <label for="loanAmount"><b>Loan Amount</b></label>
+    <input type="text"  class="inputfield" placeholder="Loan Amount"  [(ngModel)]="loanAmount" name="loanAmount" required disabled=true>
+    
+	 <label for="interest"><b>Interest</b></label>
+    <input type="text"  class="inputfield"  placeholder="Interest"  [(ngModel)]="interest" name="interest" required disabled=true >
+	
+    <label for="totalAmount"><b>Total Amount</b></label>
+    <input type="text"  class="inputfield" placeholder="Total Amount"  [(ngModel)]="totalAmount" name="totalAmount" required disabled=true>
+    
+   
+    
+ 
+    
+    <label for="remarks"><b>Remarks</b></label>
+    <textarea  class="inputfield" placeholder="Enter Remarks" name="remarks" required   [(ngModel)]="remarks" ></textarea>
+    <hr>
+    <button type="reset" class="trfbtn resetbtn">Reset</button>&nbsp;&nbsp;
+    <button type="submit" class="trfbtn" (click)="addLoan($event)">Add Loan</button>&nbsp;&nbsp;
+  </div>
+</form>
